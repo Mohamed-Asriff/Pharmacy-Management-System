@@ -378,11 +378,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['login'])) {
         function toggleRegisterNote() {
             const userType = document.getElementById('user_type').value;
             const note = document.getElementById('register-note');
+            const registerTabBtn = document.querySelectorAll('.tab-btn')[1];
+            const loginTab = document.getElementById('login-tab');
             
             if (userType === 'customer') {
                 note.classList.add('show');
+                registerTabBtn.style.display = 'block';
             } else {
                 note.classList.remove('show');
+                registerTabBtn.style.display = 'none';
+                // If currently on register tab, switch to login tab
+                if (!loginTab.classList.contains('active')) {
+                    switchTab('login');
+                }
             }
         }
 
